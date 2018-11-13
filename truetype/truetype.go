@@ -172,6 +172,19 @@ type cm struct {
 	start, end, delta, offset uint32
 }
 
+func (c cm) GetStart() uint32 {
+	return c.start
+}
+func (c cm) GetEnd() uint32 {
+	return c.end
+}
+func (c cm) GetDelta() uint32 {
+	return c.delta
+}
+func (c cm) GetOffset() uint32 {
+	return c.offset
+}
+
 // A Font represents a Truetype font.
 type Font struct {
 	// Tables sliced from the TTF data. The different tables are documented
@@ -192,6 +205,9 @@ type Font struct {
 	maxTwilightPoints, maxStorage, maxFunctionDefs, maxStackElements uint16
 }
 
+func (f *Font) GetCmap() []cm {
+	return f.cm
+}
 func (f *Font) parseCmap() error {
 	const (
 		cmapFormat4         = 4
